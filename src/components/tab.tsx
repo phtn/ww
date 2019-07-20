@@ -1,5 +1,6 @@
 import React, { FC, useContext } from "react";
 import { UIContext } from "../context/ui-context";
+import { Frame } from "framer";
 
 const Tab: FC = () => {
   const [state, setState] = useContext(UIContext);
@@ -10,7 +11,7 @@ const Tab: FC = () => {
   }
 
   return (
-    <div style={styles.title}>
+    <Frame style={styles.title}>
       <button
         style={Object.assign({}, styles.button, {
           color: nightmode ? "#eee" : "#333"
@@ -20,9 +21,9 @@ const Tab: FC = () => {
           setState((state: {}) => ({ ...state, count: count + 250 }));
         }}
       >
-        {nightmode ? "🌑" : "🌘"}
+        {nightmode ? "🌘" : "🌑"}
       </button>
-    </div>
+    </Frame>
   );
 };
 
@@ -31,16 +32,18 @@ const styles = {
     display: "flex",
     justifyContent: "center",
     width: "20%",
-    height: 48,
+    height: 35,
     color: "white",
     backgroundColor: "transparent",
-    lineHeight: "50px"
+    lineHeight: "50px",
+    top: 15
   },
   button: {
-    width: 100,
-    border: "none",
+    width: "auto",
+    border: `3px solid rgba(204,204,204, 0.2)`,
     backgroundColor: "transparent",
-    fontSize: 20
+    fontSize: 20,
+    borderRadius: 15
   }
 };
 
