@@ -43,7 +43,12 @@ export const Slider: FC = () => {
     <>
       <AnimatePresence initial={false} custom={direction}>
         <motion.img
-          style={{ position: "absolute", maxWidth: "100vw", top: 50 }}
+          style={{
+            position: "absolute",
+            maxWidth: "100vw",
+            top: 50
+            // height: "400px"
+          }}
           key={page}
           src={images[imageIndex]}
           custom={direction}
@@ -82,9 +87,8 @@ export const Slider: FC = () => {
 
 const styles = {
   next: {
-    marginTop: "200px",
+    marginTop: "210px",
     marginLeft: 100,
-    top: 200,
     color: "rgba(204,204,204,0.7)",
     fontSize: 40,
     fontWeight: 100,
@@ -93,8 +97,7 @@ const styles = {
     // border: "1px solid red"
   },
   prev: {
-    marginTop: "200px",
-    top: 100,
+    marginTop: "210px",
     color: "white",
     fontSize: 40,
     zIndex: 1,
