@@ -43,7 +43,7 @@ export const Slider: FC = () => {
     <>
       <AnimatePresence initial={false} custom={direction}>
         <motion.img
-          style={{ position: "absolute", maxWidth: "100vw" }}
+          style={{ position: "absolute", maxWidth: "100vw", top: 50 }}
           key={page}
           src={images[imageIndex]}
           custom={direction}
@@ -69,14 +69,38 @@ export const Slider: FC = () => {
           }}
         />
       </AnimatePresence>
-      <div className="next" onClick={() => paginate(1)}>
-        {"right"}
+      <div style={styles.prev} onClick={() => paginate(-1)}>
+        {"<"}
       </div>
-      <div className="prev" onClick={() => paginate(-1)}>
-        {"left"}
+      &middot;
+      <div style={styles.next} onClick={() => paginate(1)}>
+        {">"}
       </div>
     </>
   );
+};
+
+const styles = {
+  next: {
+    marginTop: "200px",
+    marginLeft: 100,
+    top: 200,
+    color: "rgba(204,204,204,0.7)",
+    fontSize: 40,
+    fontWeight: 100,
+    zIndex: 1,
+    height: "50px"
+    // border: "1px solid red"
+  },
+  prev: {
+    marginTop: "200px",
+    top: 100,
+    color: "white",
+    fontSize: 40,
+    zIndex: 1,
+    height: "50px",
+    fontWeight: 100
+  }
 };
 
 /**

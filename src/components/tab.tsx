@@ -30,7 +30,7 @@ const Tab: FC = () => {
           setState((state: {}) => ({ ...state, count: count + 250 }));
         }}
       >
-        {nightmode ? "🌘" : "🌑"}
+        <span style={{ position: "relative" }}>{nightmode ? "🌘" : "🌑"}</span>
       </button>
     </Frame>
   );
@@ -49,12 +49,11 @@ const styles = {
   },
   button: {
     width: 36,
-
     padding: 5,
     backgroundColor: "transparent",
     fontSize: 18,
     borderRadius: 20,
-    position: "relative",
+    position: "absolute",
     outline: "none"
   }
 };
