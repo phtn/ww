@@ -22,7 +22,7 @@ const Navbar: FC = () => {
       style={styles.navbar}
     >
       <Tab />
-      <Frame style={styles.divider} />
+      {/* <Frame style={styles.divider} /> */}
     </Frame>
   );
 };

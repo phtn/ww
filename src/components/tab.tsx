@@ -4,17 +4,26 @@ import { Frame } from "framer";
 
 const Tab: FC = () => {
   const [state, setState] = useContext(UIContext);
-  const { nightmode, count } = state;
+  const { nightmode, count, btnFocus } = state;
 
   function toggleNightmode() {
     setState((state: {}) => ({ ...state, nightmode: !nightmode }));
   }
 
+  function toggleButtonFocus() {
+    setState((state: {}) => ({ ...state, btnFocus: !btnFocus }));
+  }
+
   return (
     <Frame style={styles.title}>
       <button
+        onFocus={() => toggleButtonFocus()}
+        onBlur={() => toggleButtonFocus()}
         style={Object.assign({}, styles.button, {
-          color: nightmode ? "#eee" : "#333"
+          color: nightmode ? "#eee" : "#333",
+          border: btnFocus
+            ? `1px solid rgba(204,204,204, 0.2)`
+            : "1px solid rgba(0,0,0,0.0)"
         })}
         onClick={() => {
           toggleNightmode();
@@ -32,18 +41,21 @@ const styles = {
     display: "flex",
     justifyContent: "center",
     width: "20%",
-    height: 35,
+    height: 36,
     color: "white",
     backgroundColor: "transparent",
-    lineHeight: "50px",
-    top: 15
+    // lineHeight: "50px",
+    top: 7
   },
   button: {
-    width: "auto",
-    border: `3px solid rgba(204,204,204, 0.2)`,
+    width: 36,
+
+    padding: 5,
     backgroundColor: "transparent",
-    fontSize: 20,
-    borderRadius: 15
+    fontSize: 18,
+    borderRadius: 20,
+    position: "relative",
+    outline: "none"
   }
 };
 

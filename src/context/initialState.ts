@@ -1,4 +1,5 @@
 export default {
   count: 0,
-  nightmode: true
+  nightmode: true,
+  btnFocus: true
 };
