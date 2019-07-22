@@ -45,9 +45,9 @@ export const Slider: FC = () => {
         <motion.img
           style={{
             position: "absolute",
-            maxWidth: "100vw",
+            maxWidth: "90vw",
             top: 50
-            // height: "400px"
+            // height: "200px"
           }}
           key={page}
           src={images[imageIndex]}
@@ -87,8 +87,8 @@ export const Slider: FC = () => {
 
 const styles = {
   next: {
-    marginTop: "210px",
-    marginLeft: 100,
+    marginTop: `${200 * 0.8}px`,
+    marginLeft: 200,
     color: "rgba(204,204,204,0.7)",
     fontSize: 40,
     fontWeight: 100,
@@ -97,7 +97,7 @@ const styles = {
     // border: "1px solid red"
   },
   prev: {
-    marginTop: "210px",
+    marginTop: `${200 * 0.8}px`,
     color: "white",
     fontSize: 40,
     zIndex: 1,
