@@ -18,9 +18,7 @@ const Body: FC = () => {
       }}
       style={styles.container}
     >
-      <div style={styles.content}>
-        <Slider />
-      </div>
+      <Slider />
     </Frame>
   );
 };

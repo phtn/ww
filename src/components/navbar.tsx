@@ -1,28 +1,37 @@
-import React, { FC, useContext } from "react";
+import React, { FC, useContext, useEffect } from "react";
 import { UIContext } from "../context/ui-context";
 import { Frame } from "framer";
 import Tab from "./tab";
+import Brand from "./brand";
 
 const Navbar: FC = () => {
-  const [state] = useContext(UIContext);
-  const { nightmode } = state;
-  // console.log(state.count);
+  const [state, setState] = useContext(UIContext);
+  const { nightmode, WIDTH } = state;
+
+  useEffect(() => {
+    const handleResize = () =>
+      setState((state: {}) => ({
+        ...state,
+        WIDTH: window.innerWidth
+      }));
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  });
+
   return (
     <Frame // NAVBAR // backgroundColor: "rgb(16,27,38)"
       initial={{ top: -50, opacity: 0.2, backgroundColor: `rgb(21,32,43)` }}
       animate={{
         top: 0,
         opacity: 1,
-        // background={{ alpha: 1, angle: 75, start: "#09F", end: "#F09" }}
         backgroundColor: nightmode ? `rgb(16,27,38)` : `rgb(0,153,229)`
-        // borderBottom: nightmode
-        //   ? `0.5px solid gray`
-        //   : `0.5px solid rgb(0,153,229)`
       }}
       style={styles.navbar}
     >
-      <Tab />
-      {/* <Frame style={styles.divider} /> */}
+      <Tab width={WIDTH} />
+      <Brand width={WIDTH} />
     </Frame>
   );
 };
