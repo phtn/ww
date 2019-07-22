@@ -1,5 +1,4 @@
-import React, { FC } from "react";
-import { useState } from "react";
+import React, { FC, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { wrap } from "@popmotion/popcorn";
 
@@ -39,13 +38,17 @@ export const Slider: FC = () => {
     setPage([page + newDirection, newDirection]);
   };
 
+  function getOffsets(e: any) {
+    console.log(e.target.offsetHeight);
+  }
   return (
     <>
       <AnimatePresence initial={false} custom={direction}>
         <motion.img
+          onLoad={getOffsets}
           style={{
             position: "absolute",
-            maxWidth: "90vw",
+            maxWidth: "100vw",
             top: 50
             // height: "200px"
           }}

@@ -20,7 +20,7 @@ const Tab: FC<TabProps> = ({ width }) => {
   }
 
   return (
-    <Frame left={WIDTH - 50} style={styles.title}>
+    <Frame left={WIDTH - 60} style={styles.title}>
       <button
         aria-label="night mode button"
         onFocus={() => toggleButtonFocus()}
