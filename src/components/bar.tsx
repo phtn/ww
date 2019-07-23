@@ -11,7 +11,11 @@ const Bar: FC = () => {
   }
 
   return (
-    <Navbar style={{}}>
+    <Navbar
+      style={{
+        backgroundColor: nightmode ? `rgb(16,27,38)` : `rgb(0,153,229)`
+      }}
+    >
       <Navbar.Group align={Alignment.LEFT}>
         <Navbar.Heading>
           <Button>Wallace Water</Button>
@@ -21,7 +25,7 @@ const Bar: FC = () => {
         <Button
           onClick={toggleNightmode}
           className="bp3-minimal"
-          icon={nightmode ? "moon" : "flash"}
+          icon={nightmode ? "flash" : "moon"}
           text=""
         />
         <Navbar.Divider />

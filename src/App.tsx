@@ -7,13 +7,14 @@ import "@blueprintjs/icons/lib/css/blueprint-icons.css";
 
 // Components
 import Bar from "./components/bar";
+import Body from "./components/body";
 
 const App: FC = () => {
   return (
     <UIProvider>
       {/* <Navbar /> */}
       <Bar />
-      {/* <Body /> */}
+      <Body />
     </UIProvider>
   );
 };
