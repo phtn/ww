@@ -26,11 +26,12 @@ const Navbar: FC = () => {
       animate={{
         top: 0,
         opacity: 1,
-        backgroundColor: nightmode ? `rgb(16,27,38)` : `rgb(0,153,229)`
+        backgroundColor: nightmode ? `rgb(16,27,38)` : `rgb(0,153,229)`,
+        width: WIDTH
       }}
       style={styles.navbar}
     >
-      <Tab width={WIDTH} />
+      <Tab />
       <Brand width={WIDTH} />
     </Frame>
   );
@@ -38,7 +39,6 @@ const Navbar: FC = () => {
 
 const styles = {
   navbar: {
-    width: "100%",
     height: 50,
     zIndex: 1
   },
