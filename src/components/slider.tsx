@@ -1,6 +1,7 @@
-import React, { FC, useState } from "react";
+import React, { FC, useState, useContext } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { wrap } from "@popmotion/popcorn";
+import { UIContext } from "../context/ui-context";
 
 const images = [
   "https://d33wubrfki0l68.cloudfront.net/dd23708ebc4053551bb33e18b7174e73b6e1710b/dea24/static/images/wallpapers/shared-colors@2x.png",
@@ -27,7 +28,8 @@ const variants = {
 
 export const Slider: FC = () => {
   const [[page, direction], setPage] = useState([0, 0]);
-
+  const [state, setState] = useContext(UIContext);
+  const { imageHeight } = state;
   // We only have 3 images, but we paginate them absolutely (ie 1, 2, 3, 4, 5...) and
   // then wrap that within 0-2 to find our image ID in the array below. By passing an
   // absolute page index as the `motion` component's `key` prop, `AnimatePresence` will
@@ -40,6 +42,7 @@ export const Slider: FC = () => {
 
   function getOffsets(e: any) {
     console.log(e.target.offsetHeight);
+    setState((state: {}) => ({ ...state, imageHeight: e.target.offsetHeight }));
   }
   return (
     <>
@@ -50,6 +53,7 @@ export const Slider: FC = () => {
             position: "absolute",
             maxWidth: "100vw",
             top: 50
+
             // height: "200px"
           }}
           key={page}
@@ -77,11 +81,20 @@ export const Slider: FC = () => {
           }}
         />
       </AnimatePresence>
-      <div style={styles.prev} onClick={() => paginate(-1)}>
+      <div
+        style={Object.assign({}, styles.prev, {
+          marginTop: `${imageHeight * 0.9}px`
+        })}
+        onClick={() => paginate(-1)}
+      >
         {"<"}
       </div>
-      &middot;
-      <div style={styles.next} onClick={() => paginate(1)}>
+      <div
+        style={Object.assign({}, styles.next, {
+          marginTop: `${imageHeight * 0.9}px`
+        })}
+        onClick={() => paginate(1)}
+      >
         {">"}
       </div>
     </>
@@ -90,7 +103,6 @@ export const Slider: FC = () => {
 
 const styles = {
   next: {
-    marginTop: `${200 * 0.8}px`,
     marginLeft: 200,
     color: "rgba(204,204,204,0.7)",
     fontSize: 40,
@@ -100,7 +112,7 @@ const styles = {
     // border: "1px solid red"
   },
   prev: {
-    marginTop: `${200 * 0.8}px`,
+    // marginTop: ``,
     color: "white",
     fontSize: 40,
     zIndex: 1,

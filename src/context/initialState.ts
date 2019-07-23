@@ -4,5 +4,6 @@ export default {
   btnFocus: false,
   sliderHeight: 500,
   WIDTH: window.innerWidth,
-  HEIGHT: window.innerHeight
+  HEIGHT: window.innerHeight,
+  imageHeight: 0
 };
