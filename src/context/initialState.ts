@@ -1,9 +1,10 @@
 export default {
   count: 0,
-  nightmode: true,
+  nightmode: false,
   btnFocus: false,
   sliderHeight: 500,
   WIDTH: window.innerWidth,
   HEIGHT: window.innerHeight,
-  imageHeight: 0
+  imageHeight: 0,
+  menuVisibility: false
 };
