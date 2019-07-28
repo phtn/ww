@@ -1,43 +1,40 @@
 import React, { FC, useContext } from "react";
-import { Card, Button, Elevation } from "@blueprintjs/core";
+// import { Card, Button, Elevation } from "@blueprintjs/core";
 import { motion } from "framer-motion";
 import { UIContext } from "../context/ui-context";
-// import { Slider } from "./slider";
 
 const Body: FC = () => {
   const [state] = useContext(UIContext);
-  const { nightmode, menuVisibility } = state;
+  const { nightmode, HEIGHT } = state;
   return (
     <motion.div
       style={Object.assign({}, styles.container, {
-        backgroundColor: nightmode ? "rgb(16,27,38)" : "white"
-        // visibility: 'hidden'
+        backgroundColor: nightmode ? "rgb(21,32,43)" : "white",
+        height: HEIGHT - 50
       })}
     >
-      <Card interactive={false} elevation={Elevation.ONE}>
+      {/* <Card interactive={false} elevation={Elevation.ONE}>
         <h5>
           <a href="#">LOGIN</a>
         </h5>
-        {/* <p>with Google</p> */}
         <Button intent="primary">with Google</Button>
-      </Card>
+      </Card> */}
+      <div style={styles.content} />
     </motion.div>
   );
 };
 
 const styles = {
   container: {
-    // height: "100%",
-
-    // visibility: "hidden", // display: "flex",
-    // justifyContent: "center"
-    // backgroundColor: "rgb(16,27,38)",
-    padding: 25
-  },
-  content: {
     width: "100%",
     display: "flex",
-    justifyContent: "center"
+    justifyContent: "center",
+    position: "absolute"
+  },
+  content: {
+    // border: "1px solid red",
+    // display: "flex",
+    width: "100%"
   }
 };
 export default Body;

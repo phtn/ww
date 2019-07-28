@@ -6,21 +6,26 @@ import { motion } from "framer-motion";
 const Bar: FC = () => {
   const [state, setState] = useContext(UIContext);
   const { nightmode } = state;
-
   function toggleNightmode() {
     setState((state: {}) => ({ ...state, nightmode: !nightmode }));
   }
 
   return (
-    <motion.div>
-      <Navbar
-        style={{
-          backgroundColor: nightmode ? `rgb(16,27,38)` : `rgb(0,153,229)`
-        }}
-      >
+    <motion.div
+      animate={{
+        backgroundColor: nightmode ? `rgb(16,27,38)` : `rgb(0,153,229)`,
+        color: nightmode ? "#ccc" : "#555"
+      }}
+    >
+      <Navbar style={{ backgroundColor: "transparent" }}>
         <Navbar.Group align={Alignment.LEFT}>
-          <Navbar.Heading>
-            <Button>Wallace Water</Button>
+          <Navbar.Heading
+            // className="bp3-heading"
+            style={Object.assign({}, styles.brand, {
+              color: nightmode ? "rgba(190,0,39, 0.5)" : "#fafafa"
+            })}
+          >
+            Wallace Water
           </Navbar.Heading>
         </Navbar.Group>
         <Navbar.Group align={Alignment.RIGHT}>
@@ -41,5 +46,15 @@ const Bar: FC = () => {
       </Navbar>
     </motion.div>
   );
+};
+const styles = {
+  brand: {
+    fontFamily: "Playfair Display, serif",
+    fontSize: "20px",
+    color: "#eee",
+    backgroundColor: "transparent",
+    letterSpacing: 1
+    // border: "1px solid red"
+  }
 };
 export default Bar;

@@ -6,5 +6,6 @@ export default {
   WIDTH: window.innerWidth,
   HEIGHT: window.innerHeight,
   imageHeight: 0,
-  menuVisibility: false
+  menuVisibility: false,
+  menuTop: 0
 };
