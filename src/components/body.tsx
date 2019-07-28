@@ -3,6 +3,9 @@ import React, { FC, useContext } from "react";
 import { motion } from "framer-motion";
 import { UIContext } from "../context/ui-context";
 
+// COMPONENTS
+import Slider from "../components/slider";
+
 const Body: FC = () => {
   const [state] = useContext(UIContext);
   const { nightmode, HEIGHT } = state;
@@ -13,12 +16,10 @@ const Body: FC = () => {
         height: HEIGHT - 50
       })}
     >
-      {/* <Card interactive={false} elevation={Elevation.ONE}>
-        <h5>
-          <a href="#">LOGIN</a>
-        </h5>
-        <Button intent="primary">with Google</Button>
-      </Card> */}
+      <div>
+        <Slider />
+      </div>
+
       <div style={styles.content} />
     </motion.div>
   );

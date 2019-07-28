@@ -1,5 +1,5 @@
 import React, { FC, useContext } from "react";
-import { Navbar, Button, Alignment } from "@blueprintjs/core";
+import { Navbar, Button, Alignment, Intent } from "@blueprintjs/core";
 import { UIContext } from "../context/ui-context";
 import { motion } from "framer-motion";
 
@@ -22,7 +22,7 @@ const Bar: FC = () => {
           <Navbar.Heading
             // className="bp3-heading"
             style={Object.assign({}, styles.brand, {
-              color: nightmode ? "rgba(190,0,39, 0.5)" : "#fafafa"
+              color: nightmode ? "#5C7080" : "#fafafa"
             })}
           >
             Wallace Water
@@ -30,6 +30,7 @@ const Bar: FC = () => {
         </Navbar.Group>
         <Navbar.Group align={Alignment.RIGHT}>
           <Button
+            intent={Intent.PRIMARY}
             onClick={toggleNightmode}
             className="bp3-minimal"
             icon={nightmode ? "flash" : "moon"}
