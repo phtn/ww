@@ -3,7 +3,49 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { wrap } from "@popmotion/popcorn";
 import { UIContext } from "../context/ui-context";
-import { Button, Intent } from "@blueprintjs/core";
+import { Alignment, Button, Intent, Navbar, Colors } from "@blueprintjs/core";
+
+type ActionbarProps = {
+  nightmode: boolean;
+  width: number;
+  imageHeight: number;
+  prev: any;
+  next: any;
+};
+const Actionbar: FC<ActionbarProps> = props => {
+  const { nightmode, width, imageHeight, prev, next } = props;
+  return (
+    <motion.div
+      animate={{
+        backgroundColor: "transparent",
+        color: nightmode ? "#ccc" : "#555",
+        width: width,
+        marginTop: imageHeight - 50
+      }}
+    >
+      <Navbar style={{ backgroundColor: "transparent", boxShadow: "0px 0px" }}>
+        <Navbar.Group align={Alignment.RIGHT}>
+          <Button
+            intent={nightmode ? Intent.NONE : Intent.PRIMARY}
+            onClick={prev}
+            className="bp3-minimal"
+            icon="chevron-left"
+            text=""
+          />
+
+          <Navbar.Divider color={Colors.GRAY2} />
+          <Button
+            intent={nightmode ? Intent.NONE : Intent.PRIMARY}
+            onClick={next}
+            className="bp3-minimal"
+            icon="chevron-right"
+            text=""
+          />
+        </Navbar.Group>
+      </Navbar>
+    </motion.div>
+  );
+};
 
 const images = [
   "https://d33wubrfki0l68.cloudfront.net/dd23708ebc4053551bb33e18b7174e73b6e1710b/dea24/static/images/wallpapers/shared-colors@2x.png",
@@ -28,9 +70,9 @@ const variants = {
   })
 };
 
-export const Slider: FC = () => {
+const Slider: FC = () => {
   const [state, setState] = useContext(UIContext);
-  const { imageHeight, WIDTH } = state;
+  const { imageHeight, nightmode, WIDTH } = state;
   const [[page, direction], setPage] = useState([0, 0]);
 
   // We only have 3 images, but we paginate them absolutely (ie 1, 2, 3, 4, 5...) and
@@ -47,10 +89,6 @@ export const Slider: FC = () => {
     setState((state: {}) => ({ ...state, imageHeight: e.target.offsetHeight }));
   }
 
-  function getBtnHeight(e: any) {
-    console.log(e.target.offsetHeight);
-  }
-
   return (
     <>
       <AnimatePresence initial={false} custom={direction}>
@@ -59,8 +97,6 @@ export const Slider: FC = () => {
           style={{
             position: "absolute",
             maxWidth: WIDTH
-            // top: 50
-            // height: "400px"
           }}
           key={page}
           src={images[imageIndex]}
@@ -87,29 +123,14 @@ export const Slider: FC = () => {
           }}
         />
       </AnimatePresence>
-      <div
-        style={{
-          position: "absolute",
-          fontSize: 20,
-          zIndex: 1,
-          top: imageHeight * 0.5 - 16,
-          color: "tomato",
-          left: WIDTH - 40,
-          backgroundColor: "rgba(0,0,0,0.5)",
-          borderRadius: 15
-        }}
-        onClick={() => paginate(1)}
-      >
-        <Button
-          onLoad={getBtnHeight}
-          intent={Intent.SUCCESS}
-          className="bp3-minimal"
-          icon="chevron-right"
-        />
-      </div>
-      {/* <div className="prev" onClick={() => paginate(-1)}>
-        {"‣"}
-      </div> */}
+
+      <Actionbar
+        nightmode={nightmode}
+        width={WIDTH}
+        imageHeight={imageHeight}
+        prev={() => paginate(-1)}
+        next={() => paginate(1)}
+      />
     </>
   );
 };
