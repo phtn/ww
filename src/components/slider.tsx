@@ -1,8 +1,9 @@
-import React, { FC } from "react";
+import React, { FC, useContext } from "react";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { wrap } from "@popmotion/popcorn";
-// import { images } from "./image-data";
+import { UIContext } from "../context/ui-context";
+import { Button, Icon, Intent } from "@blueprintjs/core";
 
 const images = [
   "https://d33wubrfki0l68.cloudfront.net/dd23708ebc4053551bb33e18b7174e73b6e1710b/dea24/static/images/wallpapers/shared-colors@2x.png",
@@ -28,6 +29,8 @@ const variants = {
 };
 
 export const Slider: FC = () => {
+  const [state, setState] = useContext(UIContext);
+  const { imageHeight, WIDTH, nightmode } = state;
   const [[page, direction], setPage] = useState([0, 0]);
 
   // We only have 3 images, but we paginate them absolutely (ie 1, 2, 3, 4, 5...) and
@@ -40,13 +43,19 @@ export const Slider: FC = () => {
     setPage([page + newDirection, newDirection]);
   };
 
+  function getImageHeight(e: any) {
+    console.log(e.target.offsetHeight);
+    setState((state: {}) => ({ ...state, imageHeight: e.target.offsetHeight }));
+  }
+
   return (
     <>
       <AnimatePresence initial={false} custom={direction}>
         <motion.img
+          onLoad={getImageHeight}
           style={{
             position: "absolute",
-            maxWidth: "100vw"
+            maxWidth: WIDTH
             // top: 50
             // height: "400px"
           }}
@@ -75,18 +84,31 @@ export const Slider: FC = () => {
           }}
         />
       </AnimatePresence>
-      {/* <div className="next" onClick={() => paginate(1)}>
-        {"‣"}
+      <div
+        style={{
+          position: "absolute",
+          fontSize: 20,
+          zIndex: 1,
+          top: imageHeight * 0.8,
+          color: "tomato",
+          left: WIDTH - 40,
+          backgroundColor: "rgba(0,0,0,0.5)",
+          borderRadius: 15
+        }}
+        onClick={() => paginate(1)}
+      >
+        <Button
+          intent={Intent.SUCCESS}
+          className="bp3-minimal"
+          icon={"arrow-right"}
+          text=""
+        />
       </div>
-      <div className="prev" onClick={() => paginate(-1)}>
+      {/* <div className="prev" onClick={() => paginate(-1)}>
         {"‣"}
       </div> */}
     </>
   );
-};
-
-const styles = {
-  next: {}
 };
 
 /**

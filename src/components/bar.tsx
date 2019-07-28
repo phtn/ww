@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 const Bar: FC = () => {
   const [state, setState] = useContext(UIContext);
-  const { nightmode } = state;
+  const { nightmode, WIDTH } = state;
   function toggleNightmode() {
     setState((state: {}) => ({ ...state, nightmode: !nightmode }));
   }
@@ -14,7 +14,8 @@ const Bar: FC = () => {
     <motion.div
       animate={{
         backgroundColor: nightmode ? `rgb(16,27,38)` : `rgb(0,153,229)`,
-        color: nightmode ? "#ccc" : "#555"
+        color: nightmode ? "#ccc" : "#555",
+        width: WIDTH
       }}
     >
       <Navbar style={{ backgroundColor: "transparent" }}>
@@ -22,7 +23,7 @@ const Bar: FC = () => {
           <Navbar.Heading
             // className="bp3-heading"
             style={Object.assign({}, styles.brand, {
-              color: nightmode ? "#5C7080" : "#fafafa"
+              color: nightmode ? "#5C7080" : "rgba(250,250,250, 0.80)"
             })}
           >
             Wallace Water
@@ -30,7 +31,7 @@ const Bar: FC = () => {
         </Navbar.Group>
         <Navbar.Group align={Alignment.RIGHT}>
           <Button
-            intent={Intent.PRIMARY}
+            intent={nightmode ? Intent.NONE : Intent.PRIMARY}
             onClick={toggleNightmode}
             className="bp3-minimal"
             icon={nightmode ? "flash" : "moon"}
@@ -38,6 +39,7 @@ const Bar: FC = () => {
           />
           <Navbar.Divider />
           <Button
+            intent={nightmode ? Intent.NONE : Intent.PRIMARY}
             onClick={() => console.log("menu")}
             className="bp3-minimal"
             icon="menu"
@@ -51,7 +53,7 @@ const Bar: FC = () => {
 const styles = {
   brand: {
     fontFamily: "Playfair Display, serif",
-    fontSize: "20px",
+    fontSize: "18px",
     color: "#eee",
     backgroundColor: "transparent",
     letterSpacing: 1

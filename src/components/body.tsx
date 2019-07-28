@@ -1,4 +1,4 @@
-import React, { FC, useContext } from "react";
+import React, { FC, useContext, useState, useEffect } from "react";
 // import { Card, Button, Elevation } from "@blueprintjs/core";
 import { motion } from "framer-motion";
 import { UIContext } from "../context/ui-context";
@@ -7,27 +7,37 @@ import { UIContext } from "../context/ui-context";
 import Slider from "../components/slider";
 
 const Body: FC = () => {
-  const [state] = useContext(UIContext);
-  const { nightmode, HEIGHT } = state;
+  const [state, setState] = useContext(UIContext);
+  const { nightmode, HEIGHT, WIDTH } = state;
+
+  useEffect(() => {
+    const handleResize = () =>
+      setState((state: {}) => ({
+        ...state,
+        WIDTH: window.innerWidth,
+        HEIGHT: window.innerHeight
+      }));
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  });
+
   return (
     <motion.div
       style={Object.assign({}, styles.container, {
         backgroundColor: nightmode ? "rgb(21,32,43)" : "white",
-        height: HEIGHT - 50
+        height: HEIGHT - 50,
+        width: WIDTH
       })}
     >
-      <div>
+      <div style={{ width: WIDTH }}>
         <Slider />
       </div>
-
-      <div style={styles.content} />
     </motion.div>
   );
 };
 
 const styles = {
   container: {
-    width: "100%",
     display: "flex",
     justifyContent: "center",
     position: "absolute"
