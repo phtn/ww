@@ -3,6 +3,9 @@ import { Navbar, Button, Alignment, Intent } from "@blueprintjs/core";
 import { UIContext } from "../context/ui-context";
 import { motion } from "framer-motion";
 
+// COMPONENTS
+import MenuBar from "./menu";
+
 const Bar: FC = () => {
   const [state, setState] = useContext(UIContext);
   const { nightmode, WIDTH } = state;
@@ -34,17 +37,12 @@ const Bar: FC = () => {
             intent={nightmode ? Intent.NONE : Intent.PRIMARY}
             onClick={toggleNightmode}
             className="bp3-minimal"
-            icon={nightmode ? "flash" : "moon"}
+            icon={nightmode ? "full-circle" : "moon"}
             text=""
           />
+
           <Navbar.Divider />
-          <Button
-            intent={nightmode ? Intent.NONE : Intent.PRIMARY}
-            onClick={() => console.log("menu")}
-            className="bp3-minimal"
-            icon="menu"
-            text=""
-          />
+          <MenuBar />
         </Navbar.Group>
       </Navbar>
     </motion.div>

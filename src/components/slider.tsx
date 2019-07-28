@@ -3,7 +3,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { wrap } from "@popmotion/popcorn";
 import { UIContext } from "../context/ui-context";
-import { Button, Icon, Intent } from "@blueprintjs/core";
+import { Button, Intent } from "@blueprintjs/core";
 
 const images = [
   "https://d33wubrfki0l68.cloudfront.net/dd23708ebc4053551bb33e18b7174e73b6e1710b/dea24/static/images/wallpapers/shared-colors@2x.png",
@@ -13,7 +13,7 @@ const images = [
 
 const variants = {
   enter: (direction: number) => ({
-    x: direction < 0 ? 1000 : -1000,
+    x: direction < 0 ? 500 : -500,
     opacity: 0
   }),
   center: {
@@ -23,14 +23,14 @@ const variants = {
   },
   exit: (direction: number) => ({
     zIndex: 0,
-    x: direction < 0 ? 1000 : -1000,
+    x: direction < 0 ? 500 : -500,
     opacity: 0
   })
 };
 
 export const Slider: FC = () => {
   const [state, setState] = useContext(UIContext);
-  const { imageHeight, WIDTH, nightmode } = state;
+  const { imageHeight, WIDTH } = state;
   const [[page, direction], setPage] = useState([0, 0]);
 
   // We only have 3 images, but we paginate them absolutely (ie 1, 2, 3, 4, 5...) and
@@ -44,8 +44,11 @@ export const Slider: FC = () => {
   };
 
   function getImageHeight(e: any) {
-    console.log(e.target.offsetHeight);
     setState((state: {}) => ({ ...state, imageHeight: e.target.offsetHeight }));
+  }
+
+  function getBtnHeight(e: any) {
+    console.log(e.target.offsetHeight);
   }
 
   return (
@@ -89,7 +92,7 @@ export const Slider: FC = () => {
           position: "absolute",
           fontSize: 20,
           zIndex: 1,
-          top: imageHeight * 0.8,
+          top: imageHeight * 0.5 - 16,
           color: "tomato",
           left: WIDTH - 40,
           backgroundColor: "rgba(0,0,0,0.5)",
@@ -98,10 +101,10 @@ export const Slider: FC = () => {
         onClick={() => paginate(1)}
       >
         <Button
+          onLoad={getBtnHeight}
           intent={Intent.SUCCESS}
           className="bp3-minimal"
-          icon={"arrow-right"}
-          text=""
+          icon="chevron-right"
         />
       </div>
       {/* <div className="prev" onClick={() => paginate(-1)}>
@@ -117,7 +120,7 @@ export const Slider: FC = () => {
  * Should accomodate longer swipes and short flicks without having binary checks on
  * just distance thresholds and velocity > 0.
  */
-const swipeConfidenceThreshold = 10000;
+const swipeConfidenceThreshold = 1000;
 const swipePower = (offset: number, velocity: number) => {
   return Math.abs(offset) * velocity;
 };
