@@ -29,7 +29,7 @@ const Body: FC = () => {
         width: WIDTH
       })}
     >
-      <div style={{ width: WIDTH }}>
+      <div style={Object.assign({}, styles.content, { height: HEIGHT - 50 })}>
         <Slider />
       </div>
     </motion.div>
@@ -40,12 +40,13 @@ const styles = {
   container: {
     display: "flex",
     justifyContent: "center",
-    position: "absolute"
+    width: 200
+    // position: "absolute"
   },
   content: {
-    // border: "1px solid red",
-    // display: "flex",
-    width: "100%"
+    // border: "1px solid green",
+    display: "flex",
+    justifyContent: "center"
   }
 };
 export default Body;

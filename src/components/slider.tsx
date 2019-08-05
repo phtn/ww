@@ -3,7 +3,14 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { wrap } from "@popmotion/popcorn";
 import { UIContext } from "../context/ui-context";
-import { Alignment, Button, Intent, Navbar, Colors } from "@blueprintjs/core";
+import {
+  Alignment,
+  Button,
+  Intent,
+  Navbar,
+  Colors,
+  Text
+} from "@blueprintjs/core";
 
 type ActionbarProps = {
   nightmode: boolean;
@@ -11,19 +18,40 @@ type ActionbarProps = {
   imageHeight: number;
   prev: any;
   next: any;
+  imageIndex: number;
 };
+
+// ⚡️ ACTIONBAR ⚡️
 const Actionbar: FC<ActionbarProps> = props => {
-  const { nightmode, width, imageHeight, prev, next } = props;
+  const { nightmode, width, imageHeight, prev, next, imageIndex } = props;
   return (
     <motion.div
       animate={{
-        backgroundColor: "transparent",
+        backgroundColor: "rgba(0,0,0,0.1)",
         color: nightmode ? "#ccc" : "#555",
-        width: width,
-        marginTop: imageHeight - 50
+        width: width > 414 ? 500 : width,
+        marginTop: imageHeight - 50,
+        height: 50,
+        zIndex: 1
       }}
     >
-      <Navbar style={{ backgroundColor: "transparent", boxShadow: "0px 0px" }}>
+      <Navbar
+        style={{ backgroundColor: "rgba(0,0,0,0)", boxShadow: "0px 0px" }}
+      >
+        <Navbar.Group align={Alignment.LEFT}>
+          <Navbar.Heading
+            style={{
+              fontFamily: "Montserrat, sans-serif",
+              fontSize: "0.8rem",
+              fontWeight: 600,
+              color: "#3882AF",
+              letterSpacing: 1
+            }}
+          >
+            {imageIndex + 1} <span style={{ fontSize: "0.70rem" }}>of</span>{" "}
+            {images.length}
+          </Navbar.Heading>
+        </Navbar.Group>
         <Navbar.Group align={Alignment.RIGHT}>
           <Button
             intent={nightmode ? Intent.NONE : Intent.PRIMARY}
@@ -48,9 +76,8 @@ const Actionbar: FC<ActionbarProps> = props => {
 };
 
 const images = [
-  "https://d33wubrfki0l68.cloudfront.net/dd23708ebc4053551bb33e18b7174e73b6e1710b/dea24/static/images/wallpapers/shared-colors@2x.png",
-  "https://d33wubrfki0l68.cloudfront.net/49de349d12db851952c5556f3c637ca772745316/cfc56/static/images/wallpapers/bridge-02@2x.png",
-  "https://d33wubrfki0l68.cloudfront.net/594de66469079c21fc54c14db0591305a1198dd6/3f4b1/static/images/wallpapers/bridge-01@2x.png"
+  "https://firebasestorage.googleapis.com/v0/b/keystone-media.appspot.com/o/images%2Fblack-berkey.png?alt=media&token=6d3ba7df-c9aa-43a1-9e6a-0c163d2b6fb2",
+  "https://firebasestorage.googleapis.com/v0/b/keystone-media.appspot.com/o/images%2Fbig-berkey-pack.png?alt=media&token=709e6851-7b48-4e5a-a3a5-524a45290c5e"
 ];
 
 const variants = {
@@ -89,6 +116,10 @@ const Slider: FC = () => {
     setState((state: {}) => ({ ...state, imageHeight: e.target.offsetHeight }));
   }
 
+  function getImageWidth(e: any) {
+    setState((state: {}) => ({ ...state, imageWidth: e.target.offsetWidth }));
+  }
+
   return (
     <>
       <AnimatePresence initial={false} custom={direction}>
@@ -96,7 +127,7 @@ const Slider: FC = () => {
           onLoad={getImageHeight}
           style={{
             position: "absolute",
-            maxWidth: WIDTH
+            maxWidth: WIDTH > 400 ? 500 : WIDTH
           }}
           key={page}
           src={images[imageIndex]}
@@ -130,6 +161,7 @@ const Slider: FC = () => {
         imageHeight={imageHeight}
         prev={() => paginate(-1)}
         next={() => paginate(1)}
+        imageIndex={imageIndex}
       />
     </>
   );

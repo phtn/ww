@@ -21,7 +21,7 @@ const Bar: FC = () => {
         width: WIDTH
       }}
     >
-      <Navbar style={{ backgroundColor: "transparent" }}>
+      <Navbar style={{ backgroundColor: "rgba(0,0,0,0)" }}>
         <Navbar.Group align={Alignment.LEFT}>
           <Navbar.Heading
             // className="bp3-heading"
@@ -50,11 +50,10 @@ const Bar: FC = () => {
 };
 const styles = {
   brand: {
-    fontFamily: "Playfair Display, serif",
-    fontSize: "18px",
+    fontFamily: "Beth Ellen, cursive",
+    fontSize: "1.0rem",
     color: "#eee",
-    backgroundColor: "transparent",
-    letterSpacing: 1
+    backgroundColor: "rgba(0,0,0,0)"
     // border: "1px solid red"
   }
 };
