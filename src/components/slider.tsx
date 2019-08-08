@@ -48,10 +48,47 @@ const Actionbar: FC<ActionbarProps> = props => {
               letterSpacing: 1
             }}
           >
-            {imageIndex + 1} <span style={{ fontSize: "0.70rem" }}>of</span>{" "}
-            {images.length}
+            <div style={{ display: "flex", alignItems: "center" }}>
+              <div
+                style={{
+                  width: 20,
+                  textAlign: "center"
+                }}
+              >
+                {imageIndex + 1}
+              </div>
+              <div
+                style={{ width: 20, textAlign: "center", fontSize: "0.70rem" }}
+              >
+                of
+              </div>
+              <div style={{ width: 20, textAlign: "center" }}>
+                {images.length}
+              </div>
+            </div>
           </Navbar.Heading>
         </Navbar.Group>
+
+        <Navbar.Group
+          align={Alignment.LEFT}
+          style={{
+            backgroundColor: "rgba(0,0,0,0.8)",
+            width: width > 414 ? 240 : 180,
+            paddingLeft: 10
+          }}
+        >
+          <Navbar.Heading
+            style={{
+              color: "#3882AF",
+              fontFamily: "Montserrat, sans-serif",
+              fontWeight: 700,
+              fontSize: width > 414 ? "1.0rem" : "0.8rem"
+            }}
+          >
+            {labels[imageIndex]}
+          </Navbar.Heading>
+        </Navbar.Group>
+
         <Navbar.Group align={Alignment.RIGHT}>
           <Button
             intent={nightmode ? Intent.NONE : Intent.PRIMARY}
@@ -76,9 +113,11 @@ const Actionbar: FC<ActionbarProps> = props => {
 };
 
 const images = [
-  "https://firebasestorage.googleapis.com/v0/b/keystone-media.appspot.com/o/images%2Fblack-berkey.png?alt=media&token=6d3ba7df-c9aa-43a1-9e6a-0c163d2b6fb2",
-  "https://firebasestorage.googleapis.com/v0/b/keystone-media.appspot.com/o/images%2Fbig-berkey-pack.png?alt=media&token=709e6851-7b48-4e5a-a3a5-524a45290c5e"
+  "https://firebasestorage.googleapis.com/v0/b/keystone-media.appspot.com/o/images%2Fbig-berkey-pack.png?alt=media&token=709e6851-7b48-4e5a-a3a5-524a45290c5e",
+  "https://firebasestorage.googleapis.com/v0/b/keystone-media.appspot.com/o/images%2Fblack-berkey.png?alt=media&token=6d3ba7df-c9aa-43a1-9e6a-0c163d2b6fb2"
 ];
+
+const labels = ["Big Berkey Patriot Pack", "Berkey Carbon Filters"];
 
 const variants = {
   enter: (direction: number) => ({
