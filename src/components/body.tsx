@@ -5,7 +5,7 @@ import { UIContext } from "../context/ui-context";
 
 // COMPONENTS
 import Slider from "../components/slider";
-import Jumbotron from "./jumbotron";
+import Jumbotron from "../components/jumbotron";
 
 const Body: FC = () => {
   const [state, setState] = useContext(UIContext);
@@ -31,8 +31,9 @@ const Body: FC = () => {
       })}
     >
       <div style={Object.assign({}, styles.content, { height: HEIGHT - 50 })}>
-        <Jumbotron />
+        {/* <Jumbotron /> */}
         <Slider />
+        <div style={{ height: 300 }} />
       </div>
     </motion.div>
   );

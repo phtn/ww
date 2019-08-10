@@ -3,14 +3,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { wrap } from "@popmotion/popcorn";
 import { UIContext } from "../context/ui-context";
-import {
-  Alignment,
-  Button,
-  Intent,
-  Navbar,
-  Colors,
-  Text
-} from "@blueprintjs/core";
+import { Alignment, Button, Intent, Navbar, Colors } from "@blueprintjs/core";
 
 type ActionbarProps = {
   nightmode: boolean;
@@ -29,8 +22,8 @@ const Actionbar: FC<ActionbarProps> = props => {
       animate={{
         backgroundColor: "rgba(0,0,0,0.1)",
         color: nightmode ? "#ccc" : "#555",
-        width: width > 414 ? 500 : width,
-        marginTop: imageHeight - 50,
+        width: width > 415 ? 500 : width,
+        marginTop: imageHeight,
         height: 50,
         zIndex: 1
       }}
@@ -73,7 +66,7 @@ const Actionbar: FC<ActionbarProps> = props => {
           align={Alignment.LEFT}
           style={{
             backgroundColor: "rgba(0,0,0,0.8)",
-            width: width > 414 ? 240 : 180,
+            width: width >= 415 ? 240 : 170,
             paddingLeft: 10
           }}
         >
@@ -82,7 +75,7 @@ const Actionbar: FC<ActionbarProps> = props => {
               color: "#3882AF",
               fontFamily: "Montserrat, sans-serif",
               fontWeight: 700,
-              fontSize: width > 414 ? "1.0rem" : "0.8rem"
+              fontSize: width >= 414 ? "1.0rem" : "0.8rem"
             }}
           >
             {labels[imageIndex]}
@@ -117,7 +110,7 @@ const images = [
   "https://firebasestorage.googleapis.com/v0/b/keystone-media.appspot.com/o/images%2Fblack-berkey.png?alt=media&token=6d3ba7df-c9aa-43a1-9e6a-0c163d2b6fb2"
 ];
 
-const labels = ["Big Berkey Patriot Pack", "Berkey Carbon Filters"];
+const labels = ["Berkey Patriot Pack", "Berkey Carbon Filters"];
 
 const variants = {
   enter: (direction: number) => ({
@@ -155,9 +148,13 @@ const Slider: FC = () => {
     setState((state: {}) => ({ ...state, imageHeight: e.target.offsetHeight }));
   }
 
-  function getImageWidth(e: any) {
-    setState((state: {}) => ({ ...state, imageWidth: e.target.offsetWidth }));
-  }
+  // function getImageWidth(e: any) {
+  //   setState((state: {}) => ({ ...state, imageWidth: e.target.offsetWidth }));
+  // }
+
+  // useState(() => {
+  //   console.log(window.innerWidth);
+  // });
 
   return (
     <>
@@ -166,7 +163,7 @@ const Slider: FC = () => {
           onLoad={getImageHeight}
           style={{
             position: "absolute",
-            maxWidth: WIDTH > 400 ? 500 : WIDTH
+            maxWidth: WIDTH >= 415 ? 500 : WIDTH
           }}
           key={page}
           src={images[imageIndex]}

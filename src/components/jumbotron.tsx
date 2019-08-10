@@ -6,7 +6,7 @@ const Jumbotron: FC = () => {
     <div
       style={{
         margin: "0 auto",
-        height: 300,
+        height: 200,
         // backgroundColor: "rgba(255,255,213,0.2)",
         display: "flex",
         alignItems: "center",
@@ -28,12 +28,12 @@ const Jumbotron: FC = () => {
           damping: 20
         }}
       >
-        <h1
+        <h3
           className="bp3-heading"
           style={{ fontFamily: "MontSerrat, sans-serif", color: "#3882AF" }}
         >
           The Ultimate Water Filtration Package
-        </h1>
+        </h3>
       </motion.div>
     </div>
   );
