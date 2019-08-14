@@ -9,6 +9,7 @@
     "@types/node": "12.6.8",
     "@types/react": "16.8.23",
     "@types/react-dom": "16.8.4",
+    "firebase": "^6.3.5",
     "framer": "^1.0.14",
     "framer-motion": "^1.2.4",
     "react": "^16.8.6",

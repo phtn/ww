@@ -66,7 +66,7 @@ const Actionbar: FC<ActionbarProps> = props => {
           align={Alignment.LEFT}
           style={{
             backgroundColor: "rgba(0,0,0,0.8)",
-            width: width >= 415 ? 240 : 170,
+            width: width >= 414 ? 220 : 170,
             paddingLeft: 10
           }}
         >
