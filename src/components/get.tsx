@@ -35,13 +35,15 @@ const GetProduct: FC = () => {
         }}
       >
         <Button
+          rightIcon="cube-add"
+          large={true}
           className="bp3-minimal"
           text="Add to cart"
           style={{
             height: 100,
             width: 300,
             fontFamily: "Montserrat, sans-serif",
-            fontSize: "1.2rem"
+            fontSize: "1.10rem"
           }}
         />
       </motion.div>

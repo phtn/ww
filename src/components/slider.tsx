@@ -37,7 +37,7 @@ const Actionbar: FC<ActionbarProps> = props => {
               fontFamily: "Montserrat, sans-serif",
               fontSize: "0.8rem",
               fontWeight: 600,
-              color: "#3882AF",
+              color: nightmode ? "rgb(92,112,128)" : "rgb(16,107,163)",
               letterSpacing: 1
             }}
           >
