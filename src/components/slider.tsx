@@ -110,7 +110,7 @@ const images = [
   "https://firebasestorage.googleapis.com/v0/b/keystone-media.appspot.com/o/images%2Fblack-berkey.png?alt=media&token=6d3ba7df-c9aa-43a1-9e6a-0c163d2b6fb2"
 ];
 
-const labels = ["Berkey Patriot Pack", "Berkey Carbon Filters"];
+const labels = ["The Patriot Pack", "Two Carbon Filters"];
 
 const variants = {
   enter: (direction: number) => ({

@@ -1,30 +1,57 @@
 import React, { FC, useContext } from "react";
 import { UIContext } from "../context/ui-context";
 import { motion } from "framer-motion";
+import { Button } from "@blueprintjs/core";
 
 const GetProduct: FC = () => {
   const [state] = useContext(UIContext);
-  const { nightmode } = state;
+  const { nightmode, WIDTH, HEIGHT, imageHeight, imageWidth } = state;
   return (
     <motion.div
       animate={{
-        backgroundColor: nightmode ? `#ecb731` : `rgb(0,153,229)`
+        backgroundColor: "rgba(0,0,0,0)",
+        width: WIDTH
       }}
       style={Object.assign({}, styles.container, {
+        height: HEIGHT - (imageHeight + 100),
         position: "absolute",
-        top: window.innerHeight - 100
+        top: HEIGHT - (HEIGHT - (imageHeight + 100)),
+        left: 0
         // backgroundColor: nightmode ? `rgb(16,27,38)` : `rgb(0,153,229)`
       })}
     >
-      <span>Get Product</span>
+      <motion.div
+        initial="hidden"
+        animate="visible"
+        transition={{ delay: 600 }}
+        style={{
+          height: 100,
+          width: imageWidth,
+          backgroundColor: nightmode ? `#ecb731` : `rgb(0,153,229)`,
+          borderRadius: 5,
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center"
+        }}
+      >
+        <Button
+          className="bp3-minimal"
+          text="Add to cart"
+          style={{
+            height: 100,
+            width: 300,
+            fontFamily: "Montserrat, sans-serif",
+            fontSize: "1.2rem"
+          }}
+        />
+      </motion.div>
     </motion.div>
   );
 };
 
 const styles = {
   container: {
-    width: "100%",
-    height: 100,
+    // height: 100,
     // border: "1px solid tomato",
     display: "flex",
     alignItems: "center",

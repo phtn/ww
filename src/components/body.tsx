@@ -34,6 +34,8 @@ const Body: FC = () => {
       <div style={Object.assign({}, styles.content, { height: HEIGHT - 50 })}>
         {/* <Jumbotron /> */}
         <Slider />
+      </div>
+      <div>
         <GetProduct />
       </div>
     </motion.div>
@@ -43,8 +45,7 @@ const Body: FC = () => {
 const styles = {
   container: {
     display: "flex",
-    justifyContent: "center",
-    width: 200
+    justifyContent: "center"
     // position: "absolute"
   },
   content: {
